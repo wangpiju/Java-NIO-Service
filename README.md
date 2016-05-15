@@ -50,4 +50,15 @@ $("#requestAjaxButton").click(function(){
 </script>
 ```
 
+#Server
+```
+spring mvc: use spring mvc to get the post parameters and then open the webSocket to standalone app 
+ @RequestMapping(value = "/requestAjax", method = RequestMethod.POST, produces = "application/json")
+public  @ResponseBody  Shop  requestAjax( @RequestParam("type") String type)
+  {
+ Shop shop = new Shop();
+  //validate the input          
+  if("simpleString".equals(type)){
+```
+
 
