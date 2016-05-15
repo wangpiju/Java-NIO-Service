@@ -14,3 +14,40 @@ server <--socket <-- app (when server receiving msg, invoke callback to process)
 
 web browser <-- response (json) <--server
 
+We have three parts: Client, Server, App
+ 
+#Client
+```
+<!--Client
+html: a simple html file contains a button to request ajax call, and each alert the json response data.-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <title> test ajax</title>
+    <head>
+<body>
+    <button id="requestAjaxButton" type="button" >Click Me!</button>
+</body>
+</html> 
+<!js: simply, I use Jquery lib to implement ajax call and show the message to the client browser screen.-->
+<script>
+$("#requestAjaxButton").click(function(){
+        $.ajax({
+             dataType: "json",
+             url: "http://ec2.test.com/reququestAjax?type=simpleString",
+             success: function(JData){
+                $.each(JData, function() {
+                    alert(JData[i].name);
+                });
+             },
+             error: function() {
+                   alert("ERROR!!!");
+             }
+        });
+ });
+</script>
+```
+
+
