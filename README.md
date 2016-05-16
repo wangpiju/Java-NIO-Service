@@ -17,9 +17,8 @@ web browser <-- response (json) <--server
 We have three parts: Client, Server, App
  
 #Client
+#html: a simple html file contains a button to request ajax call, and each alert the json response data.
 ```
-<!--Client
-html: a simple html file contains a button to request ajax call, and each alert the json response data.-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -51,9 +50,9 @@ $("#requestAjaxButton").click(function(){
 ```
 
 #Server
+#spring mvc: use spring mvc to get the post parameters and then open the webSocket to standalone app 
 ```
-spring mvc: use spring mvc to get the post parameters and then open the webSocket to standalone app 
- @RequestMapping(value = "/requestAjax", method = RequestMethod.POST, produces = "application/json")
+@RequestMapping(value = "/requestAjax", method = RequestMethod.POST, produces = "application/json")
 public  @ResponseBody  Shop  requestAjax( @RequestParam("type") String type)
 {
  Shop shop = new Shop();
@@ -138,6 +137,7 @@ class ReadWriteHandler implements CompletionHandler<Integer, Attachment> {
 ```
 
 #App
+#create an NIO server to listen the request 
 ```
 public static void main(String[] args) throws Exception {
  AsynchronousServerSocketChannel server = AsynchronousServerSocketChannel
