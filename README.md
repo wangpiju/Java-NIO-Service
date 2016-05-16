@@ -78,6 +78,15 @@ public  @ResponseBody  Shop  requestAjax( @RequestParam("type") String type)
        ReadWriteHandler readWriteHandler = new ReadWriteHandler();
        channel.write(attach.buffer, attach, readWriteHandler);
        attach.mainThread.join();
+       
+       while (!result.isDone()) {
+           System.out.println("Task is not completed yet...."); 
+           Thread.sleep(1); //sleep for 1 millisecond before checking again 
+       } 
+       
+       System.out.println("Task is completed, let's check result"); 
+       shop.setName(future.get());
+       return shop;
  }
 }
 
